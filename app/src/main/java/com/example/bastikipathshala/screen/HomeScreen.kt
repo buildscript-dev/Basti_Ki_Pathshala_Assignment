@@ -2,6 +2,7 @@ package com.example.bastikipathshala.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -36,11 +36,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.bastikipathshala.R
+import com.example.bastikipathshala.navigation.Screen
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController : NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -99,7 +101,9 @@ fun HomeScreen() {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            SelectionContainer{
+            SelectionContainer(modifier = Modifier.clickable(onClick = {
+                navController.navigate(Screen.Form.route)
+            })){
                 Text(
                     text = "Fill The Form",
                     fontWeight = FontWeight.SemiBold,
@@ -144,7 +148,9 @@ fun HomeScreen() {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            SelectionContainer {
+            SelectionContainer(modifier = Modifier.clickable(onClick = {
+                navController.navigate(Screen.About.route)
+            })) {
                 Text(
                     text = "About Us",
                     fontWeight = FontWeight.SemiBold,

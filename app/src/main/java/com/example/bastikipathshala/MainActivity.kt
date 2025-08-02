@@ -4,14 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.bastikipathshala.screen.AboutUsScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.bastikipathshala.navigation.Screen
+import com.example.bastikipathshala.screen.AboutScreen
 import com.example.bastikipathshala.screen.FormScreen
 import com.example.bastikipathshala.screen.HomeScreen
 import com.example.bastikipathshala.ui.theme.BastiKiPathShalaTheme
@@ -22,9 +19,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BastiKiPathShalaTheme {
-//                HomeScreen()
-//                FormScreen()
-                AboutUsScreen()
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.Home.route
+                ) {
+                    composable(Screen.Home.route) {
+                        HomeScreen(navController)
+                    }
+                    composable(Screen.Form.route) {
+                        FormScreen(navController)
+                    }
+                    composable(Screen.About.route) {
+                        AboutScreen(navController)
+                    }
+                }
+
             }
         }
     }

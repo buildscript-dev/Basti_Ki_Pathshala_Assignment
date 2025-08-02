@@ -19,9 +19,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun AboutUsScreen(){
+fun AboutScreen(navController : NavController){
     Column(modifier = Modifier.fillMaxSize()
         .padding(WindowInsets.systemBars.asPaddingValues())
         .verticalScroll(rememberScrollState())
